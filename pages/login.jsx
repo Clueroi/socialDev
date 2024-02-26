@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import Link from 'next/link'
 
 import ImageWithSpace from "../src/components/layout/ImageWithSpace"
 import H1 from "../src/components/typography/h1"
@@ -39,7 +40,7 @@ function LoginPage () {
           <Input type="password" label="Senha"></Input>
           <Button>Entrar </Button>
         </Form>
-        <Text> Não tem uma conta? <a href="#"> Faça seu cadastro </a></Text>
+        <Text> Não tem uma conta? <Link href="/signup"> Faça seu cadastro </Link></Text>
       </ImageWithSpace>
     </div>
   )
