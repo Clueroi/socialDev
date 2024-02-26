@@ -4,6 +4,8 @@ import ImageWithSpace from "../src/components/layout/ImageWithSpace"
 import H1 from "../src/components/typography/h1"
 import H4 from "../src/components/typography/h4"
 import H2 from '../src/components/typography/H2'
+import Button from '../src/components/input/button'
+import Input from '../src/components/input/input'
 
 
 function HomePage () {
@@ -33,9 +35,9 @@ function HomePage () {
           </H2>
         </DivMargin>
         <Form>
-          <input type="email" placeholder="E-mail ou usuário"></input>
-          <input type="password" placeholder="Senha"></input>
-          <button> Entrar </button>
+          <Input type="email" label="E-mail ou usuário"></Input>
+          <Input type="password" label="Senha"></Input>
+          <Button>Entrar </Button>
         </Form>
         <Text> Não tem uma conta? <a href="#"> Faça seu cadastro </a></Text>
       </ImageWithSpace>

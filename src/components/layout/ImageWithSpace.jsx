@@ -19,7 +19,7 @@ const StyledImage = styled.div`
 const StyledContainer = styled.div`
     padding: 50px 40px;
     width:100%;
-    background-color:white;
+    background-color: ${props=> props.theme.white};
     padding:30px;
     align-itens: center;
     
