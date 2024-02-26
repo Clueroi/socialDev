@@ -17,7 +17,7 @@ const StyledImage = styled.div`
     }
 `
 const StyledContainer = styled.div`
-    padding: 50px 40px;
+    padding: 30px 40px;
     width:100%;
     background-color: ${props=> props.theme.white};
     padding:30px;
@@ -34,7 +34,14 @@ const StyledContainer = styled.div`
 
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    overflow-y: auto;
+
+    height: calc(100vh - 60px)
+
+    &:before, &:after{
+        content:'';
+        margin:auto;
+    }
 `
 
 

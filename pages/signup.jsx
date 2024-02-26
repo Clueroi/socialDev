@@ -8,7 +8,7 @@ import Button from '../src/components/input/button'
 import Input from '../src/components/input/input'
 
 
-function LoginPage () {
+function SignupPage () {
 
   const DivMargin = styled.div`
     margin-top:60px;
@@ -31,18 +31,20 @@ function LoginPage () {
         <H4>Tudo que acontece no mundo dev, está aqui!</H4>
         <DivMargin>
           <H2>
-            Entre em sua conta
+            Crie sua conta
           </H2>
         </DivMargin>
         <Form>
+          <Input type="text" label="Nome"></Input>
+          <Input type="text" label="Sobrenome"></Input>
           <Input type="email" label="E-mail ou usuário"></Input>
           <Input type="password" label="Senha"></Input>
           <Button>Entrar </Button>
         </Form>
-        <Text> Não tem uma conta? <a href="#"> Faça seu cadastro </a></Text>
+        <Text> Já possui uma conta? <a href="#"> Faça seu login </a></Text>
       </ImageWithSpace>
     </div>
   )
 }
 
-export default LoginPage
+export default SignupPage
