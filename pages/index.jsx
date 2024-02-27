@@ -1,11 +1,15 @@
-import ImageWithSpace from "../src/components/layout/ImageWithSpace"
+import styled from "styled-components"
 
+import Navbar from '../src/components/layout/navbar'
 
 function HomePage(){
     return(
-        <ImageWithSpace>
-            Teste
-        </ImageWithSpace>
+        <> 
+            <Navbar></Navbar>
+            <div>
+                Teste 1...2...3...
+            </div>
+        </>
     )
 }
 export default HomePage
