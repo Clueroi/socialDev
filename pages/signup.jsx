@@ -15,14 +15,12 @@ import Input from '../src/components/input/input'
 
 function SignupPage () {
 
-  const { register, handleSubmit, formState:{errors}} = useForm({
+  const { control, handleSubmit, formState:{errors}} = useForm({
     resolver: joiResolver(signupSchema)
   })
   const HandleForm = (data) => {
     console.log(data)
   }
-
-  console.log(errors)
 
   const DivMargin = styled.div`
     margin-top:60px;
@@ -49,11 +47,11 @@ function SignupPage () {
           </H2>
         </DivMargin>
         <Form onSubmit={handleSubmit(HandleForm)}>
-          <Input type="text" label="Nome" {...register('firstName')} error={errors.firstName}></Input>
-          <Input type="text" label="Sobrenome" {...register('lastName')} error={errors.lastName}></Input>
-          <Input type="text" label="Usuário" {...register('user')} error={errors.user}></Input>
-          <Input type="email" label="E-mail" {...register('email')} error={errors.email}></Input>
-          <Input type="password" label="Senha" {...register('password')} error={errors.password}></Input>
+          <Input type="text" label="Nome" name="firstName" control={control}></Input>
+          <Input type="text" label="Sobrenome" name="lastName" control={control}></Input>
+          <Input type="text" label="Usuário" name="user" control={control}></Input>
+          <Input type="email" label="E-mail" name="email" control={control}></Input>
+          <Input type="password" label="Senha" name="password" control={control}></Input>
           <Button type="submit" disabled={Object.keys(errors).length > 0}>Entrar </Button>
         </Form>
         <Text> Já possui uma conta? <Link href="/login"> Faça seu login </Link></Text>
