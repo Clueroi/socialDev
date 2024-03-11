@@ -1,5 +1,9 @@
 import styled from "styled-components"
 import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import { joiResolver } from '@hookform/resolvers/joi'
+
+import { signupSchema } from "../modules/user/user.schema"
 
 import ImageWithSpace from "../src/components/layout/ImageWithSpace"
 import H1 from "../src/components/typography/h1"
@@ -10,6 +14,15 @@ import Input from '../src/components/input/input'
 
 
 function SignupPage () {
+
+  const { register, handleSubmit, formState:{errors}} = useForm({
+    resolver: joiResolver(signupSchema)
+  })
+  const HandleForm = (data) => {
+    console.log(data)
+  }
+
+  console.log(errors)
 
   const DivMargin = styled.div`
     margin-top:60px;
@@ -35,13 +48,13 @@ function SignupPage () {
             Crie sua conta
           </H2>
         </DivMargin>
-        <Form>
-          <Input type="text" label="Nome"></Input>
-          <Input type="text" label="Sobrenome"></Input>
-          <Input type="text" label="Usuário"></Input>
-          <Input type="email" label="E-mail"></Input>
-          <Input type="password" label="Senha"></Input>
-          <Button>Entrar </Button>
+        <Form onSubmit={handleSubmit(HandleForm)}>
+          <Input type="text" label="Nome" {...register('firstName')}></Input>
+          <Input type="text" label="Sobrenome" {...register('lastName')}></Input>
+          <Input type="text" label="Usuário" {...register('user')}></Input>
+          <Input type="email" label="E-mail" {...register('email')}></Input>
+          <Input type="password" label="Senha" {...register('password')}></Input>
+          <Button type="submit">Entrar </Button>
         </Form>
         <Text> Já possui uma conta? <Link href="/login"> Faça seu login </Link></Text>
       </ImageWithSpace>

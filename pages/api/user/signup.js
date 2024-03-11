@@ -6,17 +6,10 @@ import createHandler from '../../../lib/middleware/nextConnect'
 
 import { SignupUser } from "../../../modules/user/user.service"
 import { ironConfig } from "../../../lib/middleware/ironSession";
-
-const postSchema = Joi.object({
-    firstName: Joi.string().required().max(50),
-    lastName: Joi.string().required().max(50),
-    user: Joi.string().required().max(30),
-    email: Joi.string().email().required().max(100),
-    password: Joi.string().required().max(50).min(12),
-})
+import { signupSchema } from '../../../modules/user/user.schema'
 
 const signup = createHandler()
-.post( validation({body:postSchema}), async (req, res)=> {
+.post( validation({body:signupSchema}), async (req, res)=> {
     try{
         const user = await SignupUser(req.body)
         req.session.user = {
