@@ -49,12 +49,12 @@ function SignupPage () {
           </H2>
         </DivMargin>
         <Form onSubmit={handleSubmit(HandleForm)}>
-          <Input type="text" label="Nome" {...register('firstName')}></Input>
-          <Input type="text" label="Sobrenome" {...register('lastName')}></Input>
-          <Input type="text" label="Usuário" {...register('user')}></Input>
-          <Input type="email" label="E-mail" {...register('email')}></Input>
-          <Input type="password" label="Senha" {...register('password')}></Input>
-          <Button type="submit">Entrar </Button>
+          <Input type="text" label="Nome" {...register('firstName')} error={errors.firstName}></Input>
+          <Input type="text" label="Sobrenome" {...register('lastName')} error={errors.lastName}></Input>
+          <Input type="text" label="Usuário" {...register('user')} error={errors.user}></Input>
+          <Input type="email" label="E-mail" {...register('email')} error={errors.email}></Input>
+          <Input type="password" label="Senha" {...register('password')} error={errors.password}></Input>
+          <Button type="submit" disabled={Object.keys(errors).length > 0}>Entrar </Button>
         </Form>
         <Text> Já possui uma conta? <Link href="/login"> Faça seu login </Link></Text>
       </ImageWithSpace>
