@@ -30,12 +30,14 @@ const ErrorText = styled.span`
 `
 
 const errorMessage = {
-    'string.empty': 'Este campo é obrigatório'
+    'string.empty': 'Este campo é obrigatório.',
+    'duplicated': 'Já existe uma conta registrada com essas informações.',
+    'string.email': 'Por favor digite um e-mail válido.'
 }
 
 
 
-const Input = ({label, name, control, defaultValue, ...props}) => {
+const Input = ({label, name, control, defaultValue='', ...props}) => {
 
     const {
         field:{value, onChange},
