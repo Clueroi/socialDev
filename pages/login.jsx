@@ -1,5 +1,11 @@
 import styled from "styled-components"
 import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import { joiResolver } from '@hookform/resolvers/joi'
+import axios from 'axios'
+import { useRouter } from "next/router"
+
+import { loginSchema } from "../modules/user/user.schema"
 
 import ImageWithSpace from "../src/components/layout/ImageWithSpace"
 import H1 from "../src/components/typography/h1"
@@ -9,7 +15,35 @@ import Button from '../src/components/input/button'
 import Input from '../src/components/input/input'
 
 
+
 function LoginPage () {
+
+  const router = useRouter()
+  const { control, handleSubmit, formState:{errors}, setError} = useForm({
+    resolver: joiResolver(loginSchema)
+  })
+
+  const onSubmit = async (data) => {
+    try{
+      const {status} = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/login`, data)
+      if(status === 200){
+        router.push('/')
+      }
+    } catch(response){
+      console.log(response.data)
+      if(response.data === 'Incorrect Password'){
+        setError('password' ,{
+          message: 'A senha está incorreta'
+        })
+      }
+      else if(response.data === 'User not found'){
+        setError('userOrEmail', {
+          message: 'Usuário ou Email não encontrado'
+        })
+      }
+      console.log(response)
+    }
+  }
 
   const DivMargin = styled.div`
     margin-top:60px;
@@ -35,10 +69,10 @@ function LoginPage () {
             Entre em sua conta
           </H2>
         </DivMargin>
-        <Form>
-          <Input type="email" label="E-mail ou usuário"></Input>
-          <Input type="password" label="Senha"></Input>
-          <Button>Entrar </Button>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Input label="E-mail ou usuário" name='userOrEmail' control={control}></Input>
+          <Input type="password" label="Senha" name='password' control={control}></Input>
+          <Button type="submit" disabled={Object.keys(errors).length > 0}>Entrar </Button>
         </Form>
         <Text> Não tem uma conta? <Link href="/signup"> Faça seu cadastro </Link></Text>
       </ImageWithSpace>
