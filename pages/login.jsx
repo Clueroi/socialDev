@@ -31,12 +31,13 @@ function LoginPage () {
       }
     } catch(response){
       console.log(response.data)
-      if(response.data === 'Incorrect Password'){
+      if(response.data === 'incorrect password'){
         setError('password' ,{
           message: 'A senha está incorreta'
         })
       }
-      else if(response.data === 'User not found'){
+      else if(response.data === 'not found'){
+        console.log('usuário não encontrado')
         setError('userOrEmail', {
           message: 'Usuário ou Email não encontrado'
         })
