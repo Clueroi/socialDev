@@ -14,7 +14,6 @@ handler
     try{
         if(!req.session.user) return res.status(401).send()
         const newPost = await createPost(req.body, req.session.user)
-        
         res.status(201).send(newPost)
     } catch(err){
         return res.status(500).send(err.message)
