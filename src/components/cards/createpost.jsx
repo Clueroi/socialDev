@@ -1,7 +1,13 @@
 import styled from "styled-components";
+import {useForm} from 'react-hook-form'
+import {joiResolver} from '@hookform/resolvers/joi'
+import axios from "axios";
+import { useSWRConfig } from "swr";
+
+import { createPostSchema } from "../../../modules/post/post.schema";
 
 import H4 from "../typography/h4";
-import Textarea from '../input/textarea'
+import ControlledTextarea from '../input/ControlledTextarea'
 import Button from '../input/button'
 
 const PostContainer = styled.div`
@@ -35,20 +41,39 @@ const PostBottom = styled.div`
 
 const BottomText = styled.p`
     flex:1;
-`
-
+` 
 
 function CreatePost({username}){
+    const { mutate } = useSWRConfig()
+    const { control, handleSubmit, formState:{isValid}, reset} = useForm({
+        resolver: joiResolver(createPostSchema),
+        mode: 'all'
+    })
+
+    const onSubmit = async (data) => {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, data)
+        if(response.status === 201){
+            reset()
+            mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
+        }
+    }   
+
     return(
             <PostContainer>
                 <H4><Title>O que você está pensando, @{username}?</Title></H4>
-                <TextContainer>
-                    <Textarea placeholder="Digite sua mensagem" rows='5'/>
-                </TextContainer>
-                <PostBottom>
-                    <BottomText>Sua mensagem será publicada</BottomText>
-                    <Button> Enviar </Button>
-                </PostBottom>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <TextContainer>
+                        <ControlledTextarea placeholder="Digite sua mensagem"
+                        rows='5' 
+                        control={control} 
+                        name="text" 
+                        maxLenght="256"/>
+                    </TextContainer>
+                    <PostBottom>
+                        <BottomText>Sua mensagem será publicada</BottomText>
+                        <Button type="submit" disabled={!isValid}> Publicar mensagem </Button>
+                    </PostBottom>
+                </form>
             </PostContainer>
     )
 }
