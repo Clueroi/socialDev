@@ -4,8 +4,8 @@ import createHandler from "../../../lib/middleware/nextConnect";
 import validation from "../../../lib/middleware/validation";
 import { ironConfig } from "../../../lib/middleware/ironSession";
 
-import { createPostSchema } from '../../../modules/post/post.schema';
-import { createPost, getPosts } from '../../../modules/post/post.service';
+import { createPostSchema, deletePostSchema } from '../../../modules/post/post.schema';
+import { createPost, deletePost, getPosts } from '../../../modules/post/post.service';
 
 const handler = createHandler()
 
@@ -28,6 +28,16 @@ handler
         res.status(200).send(posts)
     } catch(err){
         return res.status(500).send(err.message)
+    }
+})
+.delete(validation(deletePostSchema), async (req, res)=>{
+    try{
+        if(!req.session.user) return res.status(401).send()
+        const deletedPost = await deletePost(req.body.id, req.session.user)
+        id(deletedPost)
+        return res.status(200).send({ ok: true })
+    } catch(err){
+        return res.status(500).send('essa bomba ta dando eerrado?')
     }
 })
 
