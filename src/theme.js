@@ -7,7 +7,8 @@ const theme = {
     white:'#FFFFFF',
     backgroundHome: '#ECECEC',
     error:'red',
-    disabled: 'grey'
+    disabled: 'grey',
+    degrade: 'linear-gradient(135deg, #2c5f2d, #155e0f)'
 }
 
 export default theme

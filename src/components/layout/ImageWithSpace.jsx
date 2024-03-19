@@ -59,7 +59,7 @@ function ImageWithSpace({children, image}){
 }
 
 ImageWithSpace.defaultProps = {
-    image: 'coffee-background.jpg'
+    image: 'art.jpeg'
 }
 
 export default ImageWithSpace

@@ -30,7 +30,13 @@ const ContainerMenu = styled.div`
     float:right;
 `
 
-function MarkedPost({text, user, date, isOwner, id}){
+const Title = styled.div`
+    text-align:center;
+    font-size: 20px;
+    font-weight:lighter;
+`
+
+function MarkedPost({text, user, date, isOwner, id, titleText}){
     
     const [editPost, setEditPost] = useState(false)
     const {mutate } = useSWRConfig()
@@ -78,6 +84,7 @@ function MarkedPost({text, user, date, isOwner, id}){
             
             <StyledUsername> @{user}</StyledUsername>
             <StyledDate> {moment(date).format('LLL')}</StyledDate>
+            <Title>{titleText}</Title>
             <ContainerText>
                 {!editPost && text}
             </ContainerText>

@@ -55,11 +55,11 @@ function HomePage({ user}){
                     </RefreshPostsContainer>
                     <PostContainer>
                         <MarkedPost
-                        text={'Trabalho de um curso, desenvolvido em react com NextJs funcionando em Back-End. ' +
-                        'Não foi feito totalmente sozinho, o back end ainda tenho severas dificuldades, mas sigo desenvolvendo e aprendendo. ' +
-                        'Estou rodando o mongoDB como banco de dados e usei o useForm para a entrega de formulários no cadastro. ' + 
-                        'Decidi fazer com o useState toda a parte de displayBlock e DisplayNone, o useEffect para definir o clique nos 3 pontos ' +
-                        'UseRef para definir quem é a referência para o clique, SWR para carregamento automático na criação de posts e diversas outras funcionalidades que estou explorando'}
+                        titleText={'Antes de tudo obrigado por acessar'}
+                        text={' Este é o trabalho de um curso, desenvolvido em react com NextJs funcionando em Back-End. ' +
+                        'Não foi feito totalmente sozinho, acompanhei o curso e um professor me orientando, principalmente para o back end, que ainda tenho severas dificuldades, mas sigo desenvolvendo e aprendendo. ' +
+                        'Estou rodando o mongoDB como banco de dados e diversas outras bibliotecas em react para fazer integrações, sendo algumas delas "useState, useEffect, useRef ,useForm, axios, styled-components, joi..." ' +
+                        'Para além de um site, essa plataforma é uma forma de portóflio onde estarão meus projetos dentro de um projeto, clique abaixo e acesse outros projetos que fiz '}
                         user={'Clueroi "Desenvolvedor"'}
                         
                         />
