@@ -5,10 +5,10 @@ import {useSWRConfig, useSWR} from 'swr'
 import { useState } from "react";
 
 import Menu from "../navigation/menu";
-import EditPost from "./editPost";
 
 const PostContainer = styled.div`
-    background-color: ${props=>props.theme.white};
+    background-color: ${props=>props.theme.black};
+    color:${props=>props.theme.white};
     padding:20px;
     border-radius:15px;
 `
@@ -30,20 +30,14 @@ const ContainerMenu = styled.div`
     float:right;
 `
 
-function Post({text, user, date, isOwner, id}){
-
+function MarkedPost({text, user, date, isOwner, id}){
+    
     const [editPost, setEditPost] = useState(false)
     const {mutate } = useSWRConfig()
 
     const handleEdit = async ()=>{
-        setEditPost(true)
+        
     }
-
-    const handleSaveEdit = ()=>{
-        setEditPost(false)
-        mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
-    }
-
     const handleDelete = async () =>{
         try{
             
@@ -86,10 +80,9 @@ function Post({text, user, date, isOwner, id}){
             <StyledDate> {moment(date).format('LLL')}</StyledDate>
             <ContainerText>
                 {!editPost && text}
-                {editPost && <EditPost id={id} text={text} onSave={handleSaveEdit}  />}
             </ContainerText>
         </PostContainer>
     )
 }
 
-export default Post
+export default MarkedPost

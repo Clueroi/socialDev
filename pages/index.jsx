@@ -3,13 +3,14 @@ import styled from "styled-components"
 import {withIronSessionSsr} from 'iron-session/next'
 import axios from "axios"
 
- import {ironConfig} from '../lib/middleware/ironSession'
+import {ironConfig} from '../lib/middleware/ironSession'
 
 import Navbar from '../src/components/layout/navbar'
 import Container from "../src/components/layout/container"
 import CreatePost from '../src/components/cards/createpost'
 import H3 from '../src/components/typography/H3'
 import Post from "../src/components/cards/post"
+import MarkedPost from '../src/components/cards/MarkedPost'
 import { useEffect, useState } from 'react'
 
 const Content = styled.div`
@@ -53,6 +54,15 @@ function HomePage({ user}){
                         <RefreshPosts> Carregar novas postagens </RefreshPosts>
                     </RefreshPostsContainer>
                     <PostContainer>
+                        <MarkedPost
+                        text={'Trabalho de um curso, desenvolvido em react com NextJs funcionando em Back-End. ' +
+                        'Não foi feito totalmente sozinho, o back end ainda tenho severas dificuldades, mas sigo desenvolvendo e aprendendo. ' +
+                        'Estou rodando o mongoDB como banco de dados e usei o useForm para a entrega de formulários no cadastro. ' + 
+                        'Decidi fazer com o useState toda a parte de displayBlock e DisplayNone, o useEffect para definir o clique nos 3 pontos ' +
+                        'UseRef para definir quem é a referência para o clique, SWR para carregamento automático na criação de posts e diversas outras funcionalidades que estou explorando'}
+                        user={'Clueroi "Desenvolvedor"'}
+                        
+                        />
                         {
                             data?.map(post=>
                                 <Post

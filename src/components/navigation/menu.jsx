@@ -47,6 +47,11 @@ const Menu = ({options=[]})=>{
         }
     }, [])
 
+    const handleClick = (onClick) =>{
+        setIsOpen(false)
+        onClick()
+    }
+
 
     return(
         <ContainerMenu>
@@ -56,7 +61,7 @@ const Menu = ({options=[]})=>{
                     options.map((option, pos) => 
                         <StyledOptions
                             key={`menu-${pos}`}
-                            onClick={option.onClick}
+                            onClick={()=>handleClick(option.onClick)}
                         >
                             {option.text}
                         </StyledOptions>
