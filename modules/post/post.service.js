@@ -8,8 +8,12 @@ export const createPost = async (body, user) => {
     })
 }
 
+const LIMITE = 20
 
-export const getPosts = async(limit = 20) =>{
+export const getPosts = async(limit = LIMITE) =>{
+    if (limit > LIMITE){
+        limit=LIMITE
+    }
     return await Post.find()
         .populate('createdBy', 'user')
         .sort({ createdDate: -1})
