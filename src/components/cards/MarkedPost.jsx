@@ -9,6 +9,7 @@ import Menu from "../navigation/menu";
 const PostContainer = styled.div`
     background-color: ${props=>props.theme.black};
     color:${props=>props.theme.white};
+    
     padding:20px;
     border-radius:15px;
 `
