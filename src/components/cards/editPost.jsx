@@ -30,6 +30,7 @@ function EditPost({id, text, onSave}){
         } catch(err){
             console.error(err)
         }
+        console.log('lo?')
     }
 
     return(

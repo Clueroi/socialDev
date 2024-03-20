@@ -2,6 +2,7 @@ import styled from "styled-components";
 import axios from 'axios'
 import { useRouter } from "next/router";
 
+ 
 
 const StyledNavbar = styled.div`
     background-color: ${props=> props.theme.white};

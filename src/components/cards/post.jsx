@@ -90,6 +90,7 @@ function Post({text, user, date, isOwner, id}){
             </ContainerText>
         </PostContainer>
     )
+    
 }
 
 export default Post
