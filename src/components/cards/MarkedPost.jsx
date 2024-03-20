@@ -9,7 +9,6 @@ import Menu from "../navigation/menu";
 const PostContainer = styled.div`
     background-color: ${props=>props.theme.black};
     color:${props=>props.theme.white};
-    
     padding:20px;
     border-radius:15px;
 `
@@ -32,12 +31,19 @@ const ContainerMenu = styled.div`
 `
 
 const Title = styled.div`
+    margin-top:20px;
     text-align:center;
     font-size: 20px;
     font-weight:lighter;
+
+    @media(max-width:600px){
+        text-align:left;
+    }
 `
 
-function MarkedPost({text, user, date, isOwner, id, titleText}){
+
+
+function MarkedPost({text, user, date, isOwner, id, titleText, soon}){
     
     const [editPost, setEditPost] = useState(false)
     const {mutate } = useSWRConfig()
