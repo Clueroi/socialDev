@@ -20,6 +20,7 @@ handler
         
     }
 })
+
 .get(async(req, res) => {
     try{
         if(!req.session.user) return res.status(401).send()

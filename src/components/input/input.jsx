@@ -1,5 +1,6 @@
 import { useController } from 'react-hook-form'
 import styled from 'styled-components'
+import { useState } from 'react'
 
 const StyledContainer = styled.div`
     width:100%;
@@ -35,9 +36,24 @@ const errorMessage = {
     'string.email': 'Por favor digite um e-mail válido.'
 }
 
+const StyledShow = styled.div`
+    height:20px;
+    width:20px;
+    background-image: url('${props => props.images}');
+    background-size:cover;
+    position:relative;
+    top:15px;
+    right:35px;
+`
+
+const StyledContainerContainer = styled.div`
+    display:flex;
+`
 
 
-const Input = ({label, name, control, defaultValue='', ...props}) => {
+const Input = ({label, name, control, view, images, defaultValue='', ...props}) => {
+
+    const [showPassword, setShowPassword] = useState(false)
 
     const {
         field:{value, onChange},
@@ -46,11 +62,13 @@ const Input = ({label, name, control, defaultValue='', ...props}) => {
     return(
         <StyledContainer>
             <StyledLabel>{label}</StyledLabel>
-            <StyledInput error={error} placeholder={label} {...props} value={value} onChange={onChange}></StyledInput>
+            <StyledContainerContainer>
+                <StyledInput error={error} placeholder={label} {...props} value={value} onChange={onChange}/>
+            </StyledContainerContainer>
             { error && <ErrorText>{errorMessage[error.type] || error.message}</ErrorText>}
+            
         </StyledContainer>
     )
 }
-
 
 export default Input
