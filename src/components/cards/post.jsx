@@ -29,8 +29,30 @@ const ContainerText = styled.div`
 const ContainerMenu = styled.div`
     float:right;
 `
+const StyledLikes = styled.img`
+    width:20px;
+    height:20px;
+`
+const StyledCount = styled.h4`
+    
+`
 
-function Post({text, user, date, isOwner, id}){
+function Post({text, user, date, isOwner, id, likes}){
+
+    const [like, setLike] = useState(false)
+    const [number, setNumber] = useState(0)
+
+    const HandleLike = ()=>{
+        if(!like){
+            setLike(true)
+            setNumber(number + 1)
+        } else{
+            setNumber(number-1)
+            setLike(false)
+        }
+        
+        console.log(number)
+    }
 
     const [editPost, setEditPost] = useState(false)
     const {mutate } = useSWRConfig()
@@ -88,6 +110,7 @@ function Post({text, user, date, isOwner, id}){
                 {!editPost && text}
                 {editPost && <EditPost id={id} text={text} onSave={handleSaveEdit}  />}
             </ContainerText>
+            <StyledLikes src="/tolike.png" onClick={HandleLike}/><StyledCount>{number}</StyledCount>
         </PostContainer>
     )
     

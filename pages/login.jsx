@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { joiResolver } from '@hookform/resolvers/joi'
 import axios from 'axios'
 import { useRouter } from "next/router"
+import { useState } from "react"
 
 import { loginSchema } from "../modules/user/user.schema"
 
@@ -23,8 +24,11 @@ function LoginPage () {
     resolver: joiResolver(loginSchema)
   })
 
+  const [loading, setLoading] = useState(false)
+
   const onSubmit = async (data) => {
     try{
+      setLoading(true)
       const {status} = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/login`, data)
       if(status === 200){
         router.push('/')
@@ -43,6 +47,8 @@ function LoginPage () {
         })
       }
       console.log(response)
+    } finally{
+      setLoading(false)
     }
   }
 
@@ -59,6 +65,9 @@ function LoginPage () {
   const Text = styled.p`
     text-align:center;
   `
+  const Span = styled.img`
+
+  `
   
   return (
     <div>
@@ -71,9 +80,9 @@ function LoginPage () {
           </H2>
         </DivMargin>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <Input label="E-mail ou usuário" name='userOrEmail' control={control}></Input>
-          <Input type="password" label="Senha" name='password' control={control}></Input>
-          <Button type="submit" disabled={Object.keys(errors).length > 0}>Entrar </Button>
+            <Input  label="E-mail ou usuário" name='userOrEmail' control={control} ></Input>
+            <Input type='password'label="Senha" name='password' control={control} ></Input>
+          <Button loading={loading} type="submit" disabled={Object.keys(errors).length > 0}>Entrar </Button>
         </Form>
         <Text> Não tem uma conta? <Link href="/signup"> Faça seu cadastro </Link></Text>
       </ImageWithSpace>
