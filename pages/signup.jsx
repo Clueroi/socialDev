@@ -44,6 +44,8 @@ function SignupPage () {
     }
   }
 
+ 
+
   const DivMargin = styled.div`
     margin-top:60px;
   `
@@ -73,7 +75,7 @@ function SignupPage () {
           <Input type="text" label="Sobrenome" name="lastName" control={control}></Input>
           <Input type="text" label="Usuário" name="user" control={control}></Input>
           <Input type="email" label="E-mail" name="email" control={control}></Input>
-          <Input type="password" label="Senha" name="password" control={control}></Input>
+          <Input TYPE label="Senha" name="password" control={control}></Input>
           <Button loading={loading} type="submit" disabled={Object.keys(errors).length > 0}>Entrar </Button>
         </Form>
         <Text> Já possui uma conta? <Link href="/login"> Faça seu login </Link></Text>

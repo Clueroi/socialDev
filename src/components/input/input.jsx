@@ -36,24 +36,27 @@ const errorMessage = {
     'string.email': 'Por favor digite um e-mail válido.'
 }
 
-const StyledShow = styled.div`
-    height:20px;
-    width:20px;
-    background-image: url('${props => props.images}');
-    background-size:cover;
-    position:relative;
-    top:15px;
-    right:35px;
-`
 
 const StyledContainerContainer = styled.div`
     display:flex;
 `
 
+const StyledImg = styled.img`
+    :hover{
+        background-color: ${props=>props.theme.inputBackground};
+        border-radius:20px;
+    }
+    
+`
 
-const Input = ({label, name, control, view, images, defaultValue='', ...props}) => {
 
-    const [showPassword, setShowPassword] = useState(false)
+const Input = ({label, name, control, view, images, TYPE ,defaultValue='', ...props}) => {
+
+    const [show, setShow] = useState(false)
+  
+    const handleClick = ()=>{
+      setShow(!show)
+    }
 
     const {
         field:{value, onChange},
@@ -63,7 +66,8 @@ const Input = ({label, name, control, view, images, defaultValue='', ...props}) 
         <StyledContainer>
             <StyledLabel>{label}</StyledLabel>
             <StyledContainerContainer>
-                <StyledInput error={error} placeholder={label} {...props} value={value} onChange={onChange}/>
+                <StyledInput error={error} type={show ? 'text' : 'password'} placeholder={label} {...props} value={value} onChange={onChange} />
+                {TYPE && <StyledImg src='./eye-open.svg' width={35} onClick={handleClick}/>}
             </StyledContainerContainer>
             { error && <ErrorText>{errorMessage[error.type] || error.message}</ErrorText>}
             

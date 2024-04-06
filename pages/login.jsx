@@ -80,8 +80,8 @@ function LoginPage () {
           </H2>
         </DivMargin>
         <Form onSubmit={handleSubmit(onSubmit)}>
-            <Input  label="E-mail ou usuário" name='userOrEmail' control={control} ></Input>
-            <Input type='password'label="Senha" name='password' control={control} ></Input>
+            <Input type="text" label="E-mail ou usuário" name='userOrEmail' control={control}></Input>
+            <Input TYPE label="Senha" name='password' control={control} ></Input>
           <Button loading={loading} type="submit" disabled={Object.keys(errors).length > 0}>Entrar </Button>
         </Form>
         <Text> Não tem uma conta? <Link href="/signup"> Faça seu cadastro </Link></Text>
