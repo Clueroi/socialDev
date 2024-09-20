@@ -57,8 +57,8 @@ function HomePage({ user}){
                         <MarkedPost
                         titleText={'Antes de tudo obrigado por acessar'}
                         text={'Este é o trabalho de um curso, desenvolvido em react com NextJs funcionando em Back-End. ' +
-                        'Usando React e express, onde atualmente é a bilbioteca que mais tenho dificuldade, tenho preferências por node com fastify e nestJs' +
-                        'Estou rodando o mongoDB como banco de dados e utilizo alguns conceitos básicos de react e bibliotecas para o front como os hooks de react e o styled components' +
+                        'Usando React e express, onde atualmente é a bilbioteca que mais tenho dificuldade, tenho preferências por node com fastify e nestJs. ' +
+                        'Estou rodando o mongoDB como banco de dados e utilizo alguns conceitos básicos de react e bibliotecas para o front como os hooks de react e o styled components. ' +
                         'Para além de um site, essa plataforma é uma forma de portóflio onde estarão meus projetos dentro de um projeto, clique abaixo e acesse outros projetos que fiz '}
                         user={'Clueroi "Desenvolvedor "'}
                         
