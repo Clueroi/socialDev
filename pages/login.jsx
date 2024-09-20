@@ -14,6 +14,7 @@ import H4 from "../src/components/typography/h4"
 import H2 from '../src/components/typography/H2'
 import Button from '../src/components/input/button'
 import Input from '../src/components/input/input'
+import ShowIcon from "../public/eye-open"
 
 
 
@@ -65,8 +66,14 @@ function LoginPage () {
   const Text = styled.p`
     text-align:center;
   `
-  const Span = styled.img`
-
+  const Icon = styled(Input)`
+    svg{
+    position:absolute;
+    right:20px;
+    top:50%;
+    transform: translateY(-50%);
+    cursor:pointer;
+    }
   `
   
   return (
@@ -81,7 +88,8 @@ function LoginPage () {
         </DivMargin>
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Input type="text" label="E-mail ou usuário" name='userOrEmail' control={control}></Input>
-            <Input TYPE label="Senha" name='password' control={control} ></Input>
+            <Icon label="Senha" name='password' control={control} />
+            <ShowIcon width="20px" height="20px"/>
           <Button loading={loading} type="submit" disabled={Object.keys(errors).length > 0}>Entrar </Button>
         </Form>
         <Text> Não tem uma conta? <Link href="/signup"> Faça seu cadastro </Link></Text>

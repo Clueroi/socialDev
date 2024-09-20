@@ -52,11 +52,7 @@ const StyledImg = styled.img`
 
 const Input = ({label, name, control, view, images, TYPE ,defaultValue='', ...props}) => {
 
-    const [show, setShow] = useState(false)
-  
-    const handleClick = ()=>{
-      setShow(!show)
-    }
+
 
     const {
         field:{value, onChange},
@@ -66,8 +62,7 @@ const Input = ({label, name, control, view, images, TYPE ,defaultValue='', ...pr
         <StyledContainer>
             <StyledLabel>{label}</StyledLabel>
             <StyledContainerContainer>
-                <StyledInput error={error} type={show ? 'text' : 'password'} placeholder={label} {...props} value={value} onChange={onChange} />
-                {TYPE && <StyledImg src='./eye-open.svg' width={35} onClick={handleClick}/>}
+                <StyledInput error={error} placeholder={label} {...props} value={value} onChange={onChange} />
             </StyledContainerContainer>
             { error && <ErrorText>{errorMessage[error.type] || error.message}</ErrorText>}
             

@@ -82,8 +82,6 @@ function Post({text, user, date, isOwner, id, likes}){
         }
     }
 
-    
-
     return(
         <PostContainer>
             {
